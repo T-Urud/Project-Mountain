@@ -13,16 +13,49 @@
   font-family: "Merriweather", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: url(../images/bg.jpg) fixed center;
+  background: url(../images/bg.jpg) fixed center/cover;
   background-size: cover;
-  max-width: 1000px;
-  margin: 200px auto;
+  max-width: 1300px;
+  margin: 30px auto;
+  text-align: center;
+}
+body::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  -webkit-animation: animeBefore 1.5s ease forwards;
+          animation: animeBefore 1.5s ease forwards;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+@-webkit-keyframes animeBefore {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes animeBefore {
+  to {
+    opacity: 0;
+  }
+}
+
+a:visited {
+  color: rgb(242, 243, 243);
 }
 
 header {
   color: rgb(242, 243, 243);
   margin: 0px auto;
+  min-height: 100vh;
 }
 header .header-txt {
   display: -webkit-box;
@@ -38,6 +71,26 @@ header .header-txt {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: 100vh;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+  -webkit-animation: headerAnim 1.5s forwards;
+          animation: headerAnim 1.5s forwards;
+}
+@-webkit-keyframes headerAnim {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes headerAnim {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
 }
 header h1 {
   text-transform: uppercase;
@@ -52,17 +105,38 @@ header h1 {
 header p {
   font-weight: 300;
   font-style: italic;
-  padding-bottom: 50px;
+  margin: 40px auto 60px;
+  width: 85%;
 }
-header .header-txt i {
+header span {
   border: 2px solid rgb(242, 243, 243);
-  border-radius: 100px;
-  padding: 30px;
-  font-size: 1.1rem;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  font-size: 1.2rem;
   cursor: pointer;
+  color: rgb(242, 243, 243);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header span:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-nav {
+header {
+  position: relative;
+}
+header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,42 +146,79 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 100px;
-  padding: 20px 0;
+  background: rgba(237, 236, 235, 0.1921568627);
+  width: 85%;
+  height: 65px;
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
-nav li {
+header nav ul {
+  height: 100%;
+}
+header nav li {
   padding: 0 20px;
   text-transform: uppercase;
   font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-nav i {
+header nav .nav-left-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+header nav .nav-left-side li {
+  cursor: pointer;
+  height: 100%;
+}
+header nav .nav-left-side li:hover {
+  background: rgb(233, 232, 232);
+  color: black;
+}
+header nav .nav-right-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+header nav .nav-right-side li {
+  height: 100%;
+}
+header nav .nav-right-side i {
   font-size: 1.1rem;
   cursor: pointer;
-}
-nav .nav-left-side {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
-nav .nav-left-side li {
-  cursor: pointer;
-}
-nav .nav-right-side {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+header nav .nav-right-side i:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
 }
 
 .section1,
@@ -115,6 +226,8 @@ nav .nav-right-side {
 .section3 {
   background: rgb(242, 243, 243);
   padding: 30px 0;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .section1 .s1-upper {
@@ -241,43 +354,102 @@ nav .nav-right-side {
 }
 
 .section3 {
-  margin: 20px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0;
+  margin: 30px auto;
+  height: 450px;
 }
-.section3 h4 {
-  text-transform: uppercase;
-  font-family: "Inter", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: rgb(117, 119, 117);
-  padding: 15px 0;
-}
-.section3 .form-part,
-.section3 .infos {
-  margin: 0 auto;
+.section3 .dwn-lft {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 50%;
-  padding: 0 30px;
+  border-right: 1px solid rgb(215, 213, 213);
 }
-.section3 #name,
-.section3 #email {
-  border: 1px solid rgb(215, 213, 213);
-  border-radius: 2px;
-  height: 30px;
-  width: 100%;
+.section3 .dwn-rgt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
 }
-.section3 #message {
+.section3 .adress,
+.section3 .phone,
+.section3 .email-adress,
+.section3 .social {
+  display: grid;
+  grid-template-columns: 33% 67%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 25%;
+}
+.section3 .adress p,
+.section3 .adress a,
+.section3 .phone p,
+.section3 .phone a,
+.section3 .email-adress p,
+.section3 .email-adress a,
+.section3 .social p,
+.section3 .social a {
+  color: rgb(117, 119, 117);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.section3 .adress ul,
+.section3 .phone ul,
+.section3 .email-adress ul,
+.section3 .social ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.section3 .adress ul li,
+.section3 .phone ul li,
+.section3 .email-adress ul li,
+.section3 .social ul li {
+  margin: 0 10px 0 0;
   border: 1px solid rgb(215, 213, 213);
-  border-radius: 2px;
-  height: 100px;
-  resize: none;
-  width: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.section3 .adress ul li i,
+.section3 .phone ul li i,
+.section3 .email-adress ul li i,
+.section3 .social ul li i {
+  padding: 10px;
+}
+.section3 .adress ul li:hover,
+.section3 .phone ul li:hover,
+.section3 .email-adress ul li:hover,
+.section3 .social ul li:hover {
+  scale: 1.2;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+.section3 .phone,
+.section3 .email-adress,
+.section3 .social {
+  border-top: 1px solid rgb(215, 213, 213);
 }
 
 button {
   border: 2px solid black;
-  padding: 10px 30px;
+  height: 45px;
+  width: 170px;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -287,7 +459,8 @@ button {
 button:hover {
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  background: rgb(215, 213, 213);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 button a {
   text-transform: uppercase;
@@ -295,4 +468,51 @@ button a {
   text-decoration: none;
   color: black;
   font-weight: 700;
+}
+button a:visited {
+  color: black;
+}
+
+.section3 button {
+  border: 2px solid rgb(111, 111, 111);
+}
+.section3 button a {
+  color: rgb(117, 119, 117);
+}
+.section3 button:hover a {
+  color: black;
+}
+
+.form-part {
+  width: 80%;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgb(117, 119, 117);
+  padding: 15px 0;
+}
+
+#name,
+#email {
+  border: 1px solid rgb(215, 213, 213);
+  border-radius: 2px;
+  height: 30px;
+  width: 100%;
+  outline: none;
+  padding: 1rem;
+}
+
+#message {
+  border: 1px solid rgb(215, 213, 213);
+  border-radius: 2px;
+  height: 100px;
+  resize: none;
+  width: 100%;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 1rem;
 }/*# sourceMappingURL=index.css.map */
