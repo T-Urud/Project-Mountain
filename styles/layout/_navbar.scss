@@ -43,6 +43,10 @@ header{
                     color: $black;
                 }
             }
+
+            @media screen and (max-width:670px) {
+                width: 100%;
+            }
         }
         .nav-right-side{
             display: flex;
@@ -64,6 +68,10 @@ header{
                 &:hover{
                     transform: scale(1.3);
                 }
+            }
+
+            @media screen and (max-width:670px){
+                display: none;
             }
         }
     }
